@@ -1,1 +1,35 @@
+const { SlashCommandBuilder } = require('discord.js');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('ticketchannelsetup')
+        .setDescription('Configura o canal de tickets e cargos de suporte.')
+        .addChannelOption(option =>
+            option
+                .setName('canal')
+                .setDescription('Selecione o canal de tickets')
+                .setRequired(true))
+        .addRoleOption(option =>
+            option
+                .setName('cargo1')
+                .setDescription('Selecione o primeiro cargo de suporte')
+                .setRequired(true))
+        .addRoleOption(option =>
+            option
+                .setName('cargo2')
+                .setDescription('Selecione o segundo cargo de suporte')
+                .setRequired(false)),
+    
+    async execute(interaction) {
+        const canal = interaction.options.getChannel('canal');
+        const cargo1 = interaction.options.getRole('cargo1');
+        const cargo2 = interaction.options.getRole('cargo2');
+
+        // Responde ao usuário com os detalhes configurados
+        await interaction.reply(`Configuração realizada com sucesso!
+        - **Canal de tickets:** ${canal}
+        - **Cargo 1:** ${cargo1}
+        - **Cargo 2:** ${cargo2 || 'Nenhum selecionado.'}`);
+    },
+};
 
