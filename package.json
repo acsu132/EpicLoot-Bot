@@ -7,7 +7,7 @@
     "start": "node index.js",
     "deploy-commands": "node config/deploy-commands.js"
   },
-  "author": "Seu Nome",
+  "author": "Adriel",
   "license": "MIT",
   "dependencies": {
     "discord.js": "^14.11.0",
